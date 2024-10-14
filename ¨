@@ -1,22 +1,56 @@
-package list
+package linkedlist
 
-type List[T any] struct {
-	values []T
+type LinkedList[T any] struct {
+	root *node[T]
 }
 
-func (l *List[T]) Init() *List[T] {
-	return &List[T]{values: make([]T, 0)}
+type node[T any] struct {
+	value any
+	next  *node[T]
 }
 
-func New[T any]() *List[T] {
-	return new(List[T]).Init()
+func (l *LinkedList[T]) Init() *LinkedList[T] {
+	rootNode := node[T]{value: nil, next: nil}
+	return &LinkedList[T]{root: &rootNode}
+}
+
+func New[T any]() *LinkedList[T] {
+	return new(LinkedList[T]).Init()
 }
 
 // Methods
 
-// add(E element) - Adds an element at the end of the lsit
+// add(E element) - Adds an element at the end of the list
+func (l *LinkedList[T]) Add(element any) {
+	newNode := node[T]{value: element, next: nil}
+	node := l.root
+	hasNext := true
+	for hasNext {
+		if node.next != nil {
+			node = node.next
+		} else {
+			hasNext = false
+		}
+	}
+	node.next = &newNode
+}
+
 // addAtIndex (int index, E element)
 // get(int index)
+func (l LinkedList[T]) get(int index) T {
+
+	if l.root.next != nil {
+		counter := 0
+		node := l.root.next
+		hasNext := true
+		for hasNext {
+			node.ne
+
+		}
+
+	}
+}
+
 // set(int index, E element) - Replaces the element tat the specified poistion with the specifeid element
 // removeFirst()
 // removeLast()
@@ -47,3 +81,7 @@ func New[T any]() *List[T] {
 // isEmpty()
 // reverse()
 // lastIndexOf(Object o) - Returns the index of the last occurrence of the specified element
+
+func hasNext(node node[T]) bool {
+
+}
